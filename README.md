@@ -1,2 +1,1 @@
-# doc-theme
-A Jekyll theme for Nimiq developer documentations
+# Nimiq Documentation Theme
