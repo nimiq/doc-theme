@@ -5,7 +5,7 @@ show_downloads: false
 markdown: kramdown
 google_analytics:
 
-baseurl: "/---your-doc-location---"
+baseurl: "doc-theme"
 
 defaults:
   -
