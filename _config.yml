@@ -1,6 +1,6 @@
 theme: jekyll-theme-minimal
-title: "Nimiq Documentation Theme"
-description: "Doc template for GitHub pages."
+title: "Doc Theme"
+description: "Theme for GitHub pages"
 show_downloads: false
 markdown: kramdown
 google_analytics:
