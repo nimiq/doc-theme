@@ -1,11 +1,10 @@
-theme: jekyll-theme-minimal
 title: "Nimiq Documentation Theme"
 description: "Doc template for GitHub pages."
 show_downloads: false
 markdown: kramdown
 google_analytics:
 
-baseurl: "/---your-doc-location---"
+baseurl: "/your-doc-location"
 
 defaults:
   -
