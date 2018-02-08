@@ -5,7 +5,7 @@ show_downloads: false
 markdown: kramdown
 google_analytics:
 
-baseurl: "/developer-reference"
+baseurl: "/---your-doc-location---"
 
 defaults:
   -
