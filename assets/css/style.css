@@ -437,22 +437,17 @@ a#nav-button{
 
 /* Responsiveness */
 
-/* mobile-small */
-@media all and (min-width: 0) and (max-width: 360px) and (orientation: portrait),
-/* mobile-large */
+/* mobile-small, large, small-landscape, large-landscape, large-landscape, tablet s-l, l-l, small, large */
+/*@media all and (min-width: 0) and (max-width: 360px) and (orientation: portrait),
        all and (min-width: 361px) and (orientation: portrait),
-/* mobile-small-landscape */
        all and (min-width: 0) and (max-width: 480px) and (orientation: landscape),
-/* mobile-large-landscape */
        all and (min-width: 481px) and (orientation: landscape),
-/* tablet-small-landscape */
        all and (min-width: 600px) and (max-width: 960px) and (orientation: landscape),
-/* tablet-large-landscape */
        all and (min-width: 961px) and (orientation: landscape),
-/* tablet-small */
        all and (min-width: 600px) and (orientation: portrait),
-/* tablet-large */
-       all and (min-width: 601px) and (max-width: 840px) and (orientation : portrait) {
+       all and (min-width: 601px) and (max-width: 840px) and (orientation : portrait) {*/
+/* all touch devices */
+@media (pointer: coarse), (max-width: 1040px) {
     table {
         overflow: auto;
         width: 100%;
@@ -535,15 +530,18 @@ a#nav-button{
 /* desktop-x-small */
        /*all and (min-width: 0) and (max-width: 480px) and (max-aspect-ratio: 4/3),*/
 /* desktop-small-landscape */
-@media all and (min-width: 481px) and (max-width: 840px) and (orientation: landscape),
+/*@media all and (min-width: 481px) and (max-width: 840px) and (orientation: landscape),*/
 /* desktop-small */
-       all and (min-width: 481px) and (max-width: 840px) and (max-aspect-ratio: 4/3),
+       /*all and (min-width: 481px) and (max-width: 840px) and (max-aspect-ratio: 4/3),*/
 /* desktop-medium-landscape */
-       all and (min-width: 840px) and (max-width: 1280px) and (orientation: landscape),
+       /*all and (min-width: 840px) and (max-width: 1280px) and (orientation: landscape),*/
 /* desktop-large */
-       all and (min-width: 1281px) and (max-width: 1600px) {
+       /*all and (min-width: 1281px) and (max-width: 1600px) {*/
+
+/* all click devices */
+@media (min-width: 1041px) {
     main {
-        margin-left: 0;
+        margin-left: 400px;
     }
 
     aside {
