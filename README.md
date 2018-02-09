@@ -20,3 +20,8 @@ description: "Developer Reference"
 ```
 
 Your `readme.md` will become your `index.html`.
+
+
+## Real World Examples 
+
+- [Nimiq Developer Reference](https://nimiq.com/developer-reference)
