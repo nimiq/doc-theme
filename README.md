@@ -21,6 +21,10 @@ description: "Developer Reference"
 
 Your `readme.md` will become your `index.html`.
 
+## Format 
+
+- Every page must have exactly one `#top-heading` because it is used in the navigation as label for the item. All other headings should be at least second-level headings like `##second-level`.
+
 
 ## Real World Examples 
 
