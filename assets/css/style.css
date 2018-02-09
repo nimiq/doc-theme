@@ -31,6 +31,7 @@ aside {
     left: 0;
     bottom: 0;
     width: 320px;
+    max-width: 100%;
     padding: 16px 0px 16px 72px;
     background: white;
     transition: transform 300ms;
@@ -482,8 +483,9 @@ a#nav-button{
     aside {
         transform: translate(-100%);
         box-shadow: var(--box-shadow);
-        width: 360px;
+        width: 304px;
         z-index: 1;
+        padding: 16px 16px 16px 72px;
     }
 
     aside:target {
@@ -529,11 +531,11 @@ a#nav-button{
 
 
 /* desktop-x-small-landscape */
-@media all and (min-width: 0) and (max-width: 480px) and (orientation: landscape),
+/*@media all and (min-width: 0) and (max-width: 480px) and (orientation: landscape),*/
 /* desktop-x-small */
-       all and (min-width: 0) and (max-width: 480px) and (max-aspect-ratio: 4/3),
+       /*all and (min-width: 0) and (max-width: 480px) and (max-aspect-ratio: 4/3),*/
 /* desktop-small-landscape */
-       all and (min-width: 481px) and (max-width: 840px) and (orientation: landscape),
+@media all and (min-width: 481px) and (max-width: 840px) and (orientation: landscape),
 /* desktop-small */
        all and (min-width: 481px) and (max-width: 840px) and (max-aspect-ratio: 4/3),
 /* desktop-medium-landscape */
