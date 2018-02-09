@@ -167,11 +167,6 @@ aside:before {
 
 
 
-
-
-
-
-
 /* Lists */
 
 ul,
@@ -187,12 +182,6 @@ ol>li {
 li>ul {
     padding-top: 8px;
 }
-
-li {
-    line-height: 20px;
-}
-
-
 
 
 

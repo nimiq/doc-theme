@@ -12,14 +12,11 @@ For the [Nimiq Blockchain](https://nimiq.com) we wanted to design a documentatio
 
 ## Installation
 
-Add this line to your Jekyll site's `Gemfile`:
-
-```ruby
-gem "doc-theme"
+In your project's root folder create a `_config.yml` like this:
+```
+remote_theme: nimiq/doc-theme
+title: "Nimiq"
+description: "Developer Reference"
 ```
 
-And add this line to your Jekyll site's `_config.yml`:
-
-```yaml
-theme: doc-theme
-```
+Your `readme.md` will become your `index.html`.
