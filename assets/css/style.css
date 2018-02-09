@@ -21,6 +21,7 @@ main {
 
 section {
     width: 720px;
+    max-width: 100%;
     padding: 16px 0 16px 48px;
 }
 
@@ -425,34 +426,48 @@ a.logo {
     opacity: 1;
 }
 
+a#nav-button{
+    display: none;
+}
+
 
 
 
 
 /* Responsiveness */
 
-@media (min-width: 1240px) {
-    main {
-        margin-left: 0;
+/* mobile-small */
+@media all and (min-width: 0) and (max-width: 360px) and (orientation: portrait),
+/* mobile-large */
+       all and (min-width: 361px) and (orientation: portrait),
+/* mobile-small-landscape */
+       all and (min-width: 0) and (max-width: 480px) and (orientation: landscape),
+/* mobile-large-landscape */
+       all and (min-width: 481px) and (orientation: landscape),
+/* tablet-small-landscape */
+       all and (min-width: 600px) and (max-width: 960px) and (orientation: landscape),
+/* tablet-large-landscape */
+       all and (min-width: 961px) and (orientation: landscape),
+/* tablet-small */
+       all and (min-width: 600px) and (orientation: portrait),
+/* tablet-large */
+       all and (min-width: 601px) and (max-width: 840px) and (orientation : portrait) {
+    table {
+        overflow: auto;
+        width: 100%;
+        display: block;
+        box-shadow: inset -5px 0px 7px #fefefe;
     }
 
-    aside {
-        width: 400px;
-        padding: 16px 8px 16px 120px;
+    table tbody {
+        width: 2000px;
+        display: block;
     }
-}
 
-@media (max-width: 1480px) {
-    main {
-        margin-left: 320px;
+    section {
+        width: 100%;
     }
-}
 
-a#nav-button{
-    display: none;
-}
-
-@media (max-width: 1048px) {
     main {
         margin-left: 0;
         overflow-x: scroll;
@@ -504,6 +519,41 @@ a#nav-button{
         pointer-events: all;
         opacity: 1;
     }
+
+    .improve-me {
+        bottom: 16px;
+        right: 16px;
+    }
 }
 
-/* test pascal */
+
+
+/* desktop-x-small-landscape */
+@media all and (min-width: 0) and (max-width: 480px) and (orientation: landscape),
+/* desktop-x-small */
+       all and (min-width: 0) and (max-width: 480px) and (max-aspect-ratio: 4/3),
+/* desktop-small-landscape */
+       all and (min-width: 481px) and (max-width: 840px) and (orientation: landscape),
+/* desktop-small */
+       all and (min-width: 481px) and (max-width: 840px) and (max-aspect-ratio: 4/3),
+/* desktop-medium-landscape */
+       all and (min-width: 840px) and (max-width: 1280px) and (orientation: landscape),
+/* desktop-large */
+       all and (min-width: 1281px) and (max-width: 1600px) {
+    main {
+        margin-left: 0;
+    }
+
+    aside {
+        width: 400px;
+        padding: 16px 8px 16px 120px;
+    }
+}
+
+/* desktop-xlarge */
+@media all and (min-width: 1601px) and (max-width: 1920px) {
+    main {
+        margin-left: 320px;
+    }
+}
+
