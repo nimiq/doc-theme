@@ -13,9 +13,20 @@ For the [Nimiq Blockchain](https://nimiq.com) we wanted to design a documentatio
 ## Usage
 
 1. Fork this repository
-1. In `_config.yml` replace `title`, `description` and `baseUrl`  
+1. In `_config.yml` replace `title`, `description` and `baseUrl`
 1. Replace `README.md` and all `.md` files in `chapters` with your content
 1. Publish your documentation
 
+# Elements and style
 
+## Big tables
 
+| Column A | Column B | Column C | Column D | Column E | Column ... | Column N |
+|----------|----------|----------|----------|----------|------------|----------|
+| content | longer content | twice the content, twice the content | a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content | no content | ... content | content |
+| content | longer content | twice the content, twice the content | a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content | no content | ... content | content |
+| content | longer content | twice the content, twice the content | a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content | no content | ... content | content |
+| content | longer content | twice the content, twice the content | a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content | no content | ... content | content |
+| content | longer content | twice the content, twice the content | a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content | no content | ... content | content |
+| content | longer content | twice the content, twice the content | a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content | no content | ... content | content |
+| content | longer content | twice the content, twice the content | a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content | no content | ... content | content |
