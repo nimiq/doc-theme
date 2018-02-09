@@ -108,6 +108,12 @@ h2+h3 {
     padding-top: 16px;
 }
 
+h2:before{
+    content: '';
+    margin-top: 80px;
+    /* display: block; */
+    position: relative;
+}
 
 p,
 ul,
@@ -161,11 +167,6 @@ aside:before {
 
 
 
-
-
-
-
-
 /* Lists */
 
 ul,
@@ -181,12 +182,6 @@ ol>li {
 li>ul {
     padding-top: 8px;
 }
-
-li {
-    line-height: 20px;
-}
-
-
 
 
 
@@ -371,6 +366,7 @@ a.logo {
     letter-spacing: 0.14em;
     font-weight: 800;
     color: rgb(90, 90, 90);
+    white-space: nowrap;
 }
 
 .logo h1+p {
@@ -422,6 +418,7 @@ a.logo {
     text-align: center;
     opacity: 0;
     transition: opacity 300ms;
+    pointer-events: none;
 }
 
 .improve-me:hover:before {
@@ -438,15 +435,6 @@ a#nav-button{
 
 /* Responsiveness */
 
-/* mobile-small, large, small-landscape, large-landscape, large-landscape, tablet s-l, l-l, small, large */
-/*@media all and (min-width: 0) and (max-width: 360px) and (orientation: portrait),
-       all and (min-width: 361px) and (orientation: portrait),
-       all and (min-width: 0) and (max-width: 480px) and (orientation: landscape),
-       all and (min-width: 481px) and (orientation: landscape),
-       all and (min-width: 600px) and (max-width: 960px) and (orientation: landscape),
-       all and (min-width: 961px) and (orientation: landscape),
-       all and (min-width: 600px) and (orientation: portrait),
-       all and (min-width: 601px) and (max-width: 840px) and (orientation : portrait) {*/
 /* all touch devices */
 @media (pointer: coarse), (max-width: 1040px) {
     table {
@@ -468,15 +456,15 @@ a#nav-button{
 
     section {
         width: auto;
-        padding: 80px 32px;
+        padding: 24px;
     }
 
     aside {
         transform: translate(-100%);
         box-shadow: var(--box-shadow);
-        width: 304px;
+        width: 312px;
         z-index: 1;
-        padding: 16px 16px 16px 72px;
+        padding: 16px 16px 16px 56px;
     }
 
     aside:target {
@@ -488,7 +476,7 @@ a#nav-button{
         top: 0;
         left: 0;
         right: 0;
-        padding: 24px 32px;
+        padding: 24px 24px;
         border-bottom: none;
         display: flex;
         align-items: center;
@@ -517,22 +505,22 @@ a#nav-button{
         bottom: 16px;
         right: 16px;
     }
+
+    .logo h1{
+        font-size: 24px;
+        margin-bottom: 2px;
+    }
+
+    .logo h1+p{
+        font-size: 13px;
+    }
+
+    nav ul.active-toc > li > a:before{
+        margin-left: -20px;
+    }
 }
 
 
-
-/* desktop-x-small-landscape */
-/*@media all and (min-width: 0) and (max-width: 480px) and (orientation: landscape),*/
-/* desktop-x-small */
-       /*all and (min-width: 0) and (max-width: 480px) and (max-aspect-ratio: 4/3),*/
-/* desktop-small-landscape */
-/*@media all and (min-width: 481px) and (max-width: 840px) and (orientation: landscape),*/
-/* desktop-small */
-       /*all and (min-width: 481px) and (max-width: 840px) and (max-aspect-ratio: 4/3),*/
-/* desktop-medium-landscape */
-       /*all and (min-width: 840px) and (max-width: 1280px) and (orientation: landscape),*/
-/* desktop-large */
-       /*all and (min-width: 1281px) and (max-width: 1600px) {*/
 
 /* all click devices */
 @media (min-width: 1041px) {

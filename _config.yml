@@ -1,15 +1,1 @@
-title: "Doc Theme"
-description: "Theme for GitHub pages"
-show_downloads: false
-markdown: kramdown
-google_analytics:
-
-baseurl: "/doc-theme"
-
-defaults:
-  -
-    scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "default"
+remote_theme: nimiq/doc-theme

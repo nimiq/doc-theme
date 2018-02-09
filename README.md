@@ -10,23 +10,18 @@ For the [Nimiq Blockchain](https://nimiq.com) we wanted to design a documentatio
 - mobile layout
 - works without javascript
 
-## Usage
+## Installation
 
-1. Fork this repository
-1. In `_config.yml` replace `title`, `description` and `baseUrl`
-1. Replace `README.md` and all `.md` files in `chapters` with your content
-1. Publish your documentation
+In your project's root folder create a `_config.yml` like this:
+```
+remote_theme: nimiq/doc-theme
+title: "Nimiq"
+description: "Developer Reference"
+```
 
-# Elements and style
+Your `readme.md` will become your `index.html`.
 
-## Big tables
 
-| Column A | Column B | Column C | Column D | Column E | Column ... | Column N |
-|----------|----------|----------|----------|----------|------------|----------|
-| content | longer content | twice the content, twice the content | a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content | no content | ... content | content |
-| content | longer content | twice the content, twice the content | a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content | no content | ... content | content |
-| content | longer content | twice the content, twice the content | a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content | no content | ... content | content |
-| content | longer content | twice the content, twice the content | a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content | no content | ... content | content |
-| content | longer content | twice the content, twice the content | a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content | no content | ... content | content |
-| content | longer content | twice the content, twice the content | a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content | no content | ... content | content |
-| content | longer content | twice the content, twice the content | a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content | no content | ... content | content |
+## Real World Examples 
+
+- [Nimiq Developer Reference](https://nimiq.com/developer-reference)
