@@ -214,6 +214,7 @@ th {
 
 td {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    min-width: 96px;
 }
 
 td:first-child {
@@ -453,11 +454,6 @@ a#nav-button{
         width: 100%;
         display: block;
         box-shadow: inset -5px 0px 7px #fefefe;
-    }
-
-    table tbody {
-        width: 2000px;
-        display: block;
     }
 
     section {
