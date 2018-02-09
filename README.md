@@ -10,23 +10,16 @@ For the [Nimiq Blockchain](https://nimiq.com) we wanted to design a documentatio
 - mobile layout
 - works without javascript
 
-## Usage
+## Installation
 
-1. Fork this repository
-1. In `_config.yml` replace `title`, `description` and `baseUrl`
-1. Replace `README.md` and all `.md` files in `chapters` with your content
-1. Publish your documentation
+Add this line to your Jekyll site's `Gemfile`:
 
-# Elements and style
+```ruby
+gem "doc-theme"
+```
 
-## Big tables
+And add this line to your Jekyll site's `_config.yml`:
 
-| Column A | Column B | Column C | Column D | Column E | Column ... | Column N |
-|----------|----------|----------|----------|----------|------------|----------|
-| content | longer content | twice the content, twice the content | a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content | no content | ... content | content |
-| content | longer content | twice the content, twice the content | a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content | no content | ... content | content |
-| content | longer content | twice the content, twice the content | a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content | no content | ... content | content |
-| content | longer content | twice the content, twice the content | a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content | no content | ... content | content |
-| content | longer content | twice the content, twice the content | a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content | no content | ... content | content |
-| content | longer content | twice the content, twice the content | a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content | no content | ... content | content |
-| content | longer content | twice the content, twice the content | a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content, a lot of content | no content | ... content | content |
+```yaml
+theme: doc-theme
+```
