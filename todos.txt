@@ -1,7 +1,7 @@
-- Must Have 
+- Must Have
 	- Navigation
-		- fixed 100% height
-		- scrolls internally
+#		- fixed 100% height
+#		- scrolls internally -- flex box: header is now fixed 20%. possible to have it auto height?
 		- accordeon
 		- should never switch order of items
 	- Structure

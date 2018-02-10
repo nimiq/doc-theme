@@ -26,15 +26,22 @@ section {
 }
 
 aside {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
     width: 320px;
     max-width: 100%;
     padding: 16px 0px 16px 72px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
     background: white;
     transition: transform 300ms;
+}
+
+header {
+    flex: 0 0 20%;
 }
 
 footer {
@@ -298,6 +305,8 @@ code {
 nav {
     padding-top: 24px;
     padding-bottom: 64px;
+    flex: 1 1 80%;
+    overflow-y: auto;
 }
 
 nav li {
