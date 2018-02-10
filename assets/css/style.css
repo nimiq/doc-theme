@@ -165,6 +165,13 @@ aside:before {
     background: linear-gradient(#536DFE, #a553fe);
 }
 
+::selection {
+  background: #64FFDA;
+}
+
+::-moz-selection {
+  background: #64FFDA;
+}
 
 
 /* Lists */
@@ -430,6 +437,13 @@ a#nav-button{
 }
 
 
+/* Code */
+
+pre code{
+    display: block;
+    padding: 16px;
+    user-select: all;
+}
 
 
 
