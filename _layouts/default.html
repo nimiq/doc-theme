@@ -27,6 +27,14 @@
         </section>
     </main>
     <aside id="nav">
+      <!-- HTML elements for search -->
+        <div id="search-container">
+            <input type="text" id="search-input" placeholder="search..."><
+            <nav>
+              <ul id="results-container"></ul>
+            </nav>
+        </div>
+
         <header>
             <a href="{{ site.baseurl }}/" class="logo">
                 <h1>{{ site.title | default: site.github.repository_name }}</h1>
@@ -43,6 +51,23 @@
         </nav>
     </aside>
     <a href="#" id="nav-backdrop"></a>
+
+    <!-- script pointing to jekyll-search.js -->
+    <script src="{{ site.baseurl }}/assets/js/simple-jekyll-search.min.js"></script>
+
+    <script>
+      window.simpleJekyllSearch = new SimpleJekyllSearch({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('results-container'),
+        json: '{{ site.baseurl }}/search.json',
+        searchResultTemplate: '<li><a href="{url}" title="{desc}">{title}</a></li>',
+        noResultsText: 'No results found',
+        templateMiddleware: function() { console.log(arguments); },
+        limit: 10,
+        fuzzy: true,
+        exclude: ['search']
+      })
+    </script>
 </body>
 
 </html>

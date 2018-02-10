@@ -3,6 +3,7 @@
     https://github.com/allejo/jekyll-toc
 {% endcomment %}
 
+{% assign jstree = "" %}
 {% capture tocWorkspace %}
 
     {% capture my_toc %}{% endcapture %}
@@ -49,6 +50,16 @@
             {% capture listItemClass %}{:.{{ include.item_class | replace: '%level%', headerLevel }}}{% endcapture %}
         {% endunless %}
 
+        {% capture jstree %}
+          {{ jstree }}
+          {
+            title: "{{ header }}",
+            url: "{{ include.url }}",
+            whitespace: "{{ space }}",
+            fragment: "{{ html_id }}"
+          },
+        {% endcapture %}
+
 {% comment %}{{ site.baseurl }}{{ include.url }}#{{ html_id }}{% endcomment %}
         {% capture my_toc %}{{ my_toc }}
 {{ space }}{{ listModifier }} {{ listItemClass }} [{% if include.sanitize %}{{ header | strip_html }}{% else %}{{ header }}{% endif %}]({{ site.baseurl }}{{ include.url }}#{{ html_id }}){% endcapture %}
@@ -65,3 +76,16 @@
 {{ my_toc | lstrip }}{% endcapture %}
     {% endif %}
 {% endcapture %}{% assign tocWorkspace = '' %}{{ my_toc | markdownify | strip }}
+<script>
+  var subtree = [{{ jstree }}];
+  if (subtree.length > 0) {
+    if (!window.jstree) window.jstree = {};
+    // the first one is the page itself
+    var page = subtree.shift();
+    page.fragment = ""; // not need for page
+    window.jstree[page.url] = {
+      node: page,
+      subnodes: subtree
+    };
+  }
+</script>

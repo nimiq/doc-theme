@@ -1,0 +1,30 @@
+{
+  "name": "doc-theme",
+  "version": "1.0.0",
+  "description": "A clean documentation theme for GitHub Pages.",
+  "main": "index.html",
+  "dependencies": {
+    "simple-jekyll-search": "^1.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://svub@github.com/nimiq/doc-theme.git"
+  },
+  "keywords": [
+    "doc",
+    "documentation",
+    "theme",
+    "GitHub",
+    "Pages"
+  ],
+  "author": "The Nimiq Foundation",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nimiq/doc-theme/issues"
+  },
+  "homepage": "https://github.com/nimiq/doc-theme#readme"
+}
