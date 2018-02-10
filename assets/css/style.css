@@ -40,10 +40,6 @@ aside {
     transition: transform 300ms;
 }
 
-header {
-    flex: 0 0 20%;
-}
-
 footer {
     width: 100%;
     padding: 32px 24px;
@@ -305,7 +301,7 @@ code {
 nav {
     padding-top: 24px;
     padding-bottom: 64px;
-    flex: 1 1 80%;
+    flex-grow: 1;
     overflow-y: auto;
 }
 
