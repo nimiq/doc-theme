@@ -3,7 +3,7 @@
 #		- fixed 100% height
 #		- scrolls internally -- flex box: header is now fixed 20%. possible to have it auto height?
 		- accordeon
-		- should never switch order of items
+#		- should never switch order of items + sort pages by depth in tree
 	- Structure
 		- how to with submodule?
 		- what's the deepest crawling depth? use excludes: '*/*/**' in _config.yml

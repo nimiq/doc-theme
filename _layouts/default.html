@@ -34,11 +34,9 @@
             </a>
         </header>
         <nav>
-          {% include toc.html html=content url=page.url h_max=3 class="active-toc" %}
-          {% for node in site.pages %}
-            {% unless node.title == page.title %}
-              {% include toc.html html=node.content url=node.url h_max=2 %}
-            {% endunless %}
+          {% assign pages = site.pages | order: dir.length | reverse %}
+          {% for node in pages %}
+            {% include toc.html html=node.content url=node.url h_max=2 %}
           {% endfor %}
         </nav>
     </aside>
