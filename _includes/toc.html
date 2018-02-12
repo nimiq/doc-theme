@@ -57,11 +57,12 @@
 
         {% capture url %}{{ site.baseurl }}{{ include.url }}#{{ html_id }}{% endcapture %}
         {% capture label %}{% if include.sanitize %}{{ header | strip_html }}{% else %}{{ header }}{% endif %}{% endcapture %}
+        {% assign isCurrent = page.url == include.url %}
 
         {% if firstHeader %}
             {% capture my_toc %}{{ my_toc }}
 {{ space }}{{ listModifier }} {{ listItemClass }} <label for="{{ url }}">{{ label }}</label>
-<input type="checkbox" id="{{ url }}">{% endcapture %}
+<input type="checkbox" {% if page.url != include.url %}checked{% endif %} id="{{ url }}">{% endcapture %}
             {% capture my_toc %}{{ my_toc }}
 {{ spaceNext }}{{ listModifier }} {{ listItemClass }} [Introduction]({{ url }}){% endcapture %}
         {% else %}
