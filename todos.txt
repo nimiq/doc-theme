@@ -1,8 +1,8 @@
-- Must Have
-	- Navigation
+#- Must Have
+#	- Navigation
 #		- fixed 100% height
 #		- scrolls internally -- flex box: header is now fixed 20%. possible to have it auto height?
-		- accordeon
+#		- accordeon
 #		- should never switch order of items + sort pages by depth in tree
 	- Structure
 		- how to with submodule?
@@ -14,4 +14,4 @@
 	- Search
 	- Title in header on mobile
 	- demos
-	- 
+	-
