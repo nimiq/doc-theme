@@ -25,21 +25,6 @@ section {
     padding: 16px 0 16px 48px;
 }
 
-aside {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 320px;
-    max-width: 100%;
-    padding: 16px 0px 16px 72px;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    background: white;
-    transition: transform 300ms;
-}
-
 footer {
     width: 100%;
     padding: 32px 24px;
@@ -298,11 +283,30 @@ code {
 
 /* Table of Contents */
 
+
+aside {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 320px;
+    max-width: 100%;
+    padding: 16px 0px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    background: white;
+    transition: transform 300ms;
+}
+
 nav {
-    padding-top: 24px;
-    padding-bottom: 64px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    padding-left: 56px;
     flex-grow: 1;
+    overflow-x: hidden;
     overflow-y: auto;
+    position: relative;
 }
 
 nav li {
@@ -346,7 +350,7 @@ nav li > label + input {
 nav li > a:before, nav li > label:before {
     content: '';
     position: absolute;
-    left: 16px;
+    left: 0px;
     right: 0;
     height: 32px;
     margin-top: -4px;
@@ -403,6 +407,7 @@ a.logo {
     margin-top: 3px;
     display: block;
     border-bottom: none;
+    margin-left: 56px;
 }
 
 .logo h1 {
@@ -487,7 +492,7 @@ pre code{
 /* Responsiveness */
 
 /* all touch devices */
-@media (pointer: coarse), (max-width: 1040px) {
+@media  (max-width: 1040px) {
     table {
         overflow: auto;
         width: 100%;
@@ -581,7 +586,7 @@ pre code{
 
     aside {
         width: 400px;
-        padding: 16px 8px 16px 120px;
+        padding: 16px 8px 16px 64px;
     }
 }
 
