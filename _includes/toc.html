@@ -57,7 +57,6 @@
 
         {% capture url %}{{ site.baseurl }}{{ include.url }}#{{ html_id }}{% endcapture %}
         {% capture label %}{% if include.sanitize %}{{ header | strip_html }}{% else %}{{ header }}{% endif %}{% endcapture %}
-        {% assign isCurrent = page.url == include.url %}
 
         {% if firstHeader %}
             {% capture my_toc %}{{ my_toc }}
