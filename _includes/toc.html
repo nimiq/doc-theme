@@ -49,19 +49,14 @@
             {% capture listItemClass %}{:.{{ include.item_class | replace: '%level%', headerLevel }}}{% endcapture %}
         {% endunless %}
 
-{% comment %}{{ site.baseurl }}{{ include.url }}#{{ html_id }}{% endcomment %}
-{% comment %}
-        {% capture my_toc %}{{ my_toc }}
-{{ space }}{{ listModifier }} {{ listItemClass }} [{% if include.sanitize %}{{ header | strip_html }}{% else %}{{ header }}{% endif %}]({{ site.baseurl }}{{ include.url }}#{{ html_id }}){% endcapture %}
-{% endcomment %}
-
         {% capture url %}{{ site.baseurl }}{{ include.url }}#{{ html_id }}{% endcapture %}
         {% capture label %}{% if include.sanitize %}{{ header | strip_html }}{% else %}{{ header }}{% endif %}{% endcapture %}
+        {% assign id = url | replace:'/','_'| replace:'#','_' %}
 
         {% if firstHeader %}
             {% capture my_toc %}{{ my_toc }}
-{{ space }}{{ listModifier }} {{ listItemClass }} <label for="{{ url }}">{{ label }}</label>
-<input type="checkbox" {% if page.url != include.url %}checked{% endif %} id="{{ url }}">{% endcapture %}
+{{ space }}{{ listModifier }} {{ listItemClass }} <label for="{{ id }}">{{ label }}</label>
+<input type="checkbox" id="{{ id }}" {% if page.url != include.url %}checked>{% else %}><script> document.getElementById("{{ id }}").scrollIntoView(); </script>{% endif %}{% endcapture %}
             {% capture my_toc %}{{ my_toc }}
 {{ spaceNext }}{{ listModifier }} {{ listItemClass }} [Introduction]({{ url }}){% endcapture %}
         {% else %}

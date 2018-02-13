@@ -343,6 +343,10 @@ nav li a:hover {
     display: inline;
 }
 
+nav li > label {
+    display: block;
+}
+
 nav li > label + input {
     display: none;
 }
@@ -373,29 +377,26 @@ nav ul.active-toc > li > a:before{
     margin-top: -1px;
 }
 
-/*nav > ul > li {
-    overflow: hidden;
-}*/
-
-/*nav > ul > li > ul {
-    margin-top: 0;
-    transition: margin-top 300ms;
-}
-
-nav  > ul > li > :checked ~ ul {
-    margin-top: -100%;
-}*/
-
-nav > ul > li > ul > li {
+nav > ul > li > ul > li, nav > ul > li > ul {
     max-height: 2.5rem;
     opacity: 1;
+    will-change: opacity;
+    overflow: hidden;
     transition: max-height 300ms, opacity 200ms, margin-top 300ms;
 }
 
-nav > ul > li > :checked ~ ul > li {
+nav > ul > li > ul {
+    max-height: 25rem;
+}
+
+nav > ul > li > :checked ~ ul > li, nav > ul > li > :checked ~ ul {
     opacity: 0;
     max-height: 0;
-    margin-top: -8px;
+    padding-top: 0;
+}
+
+nav > ul > li > :checked ~ ul > li > a:before {
+    display: none;
 }
 
 
