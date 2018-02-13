@@ -35,9 +35,6 @@ footer {
 
 
 
-
-
-
 /* Typography */
 
 body {
@@ -485,6 +482,7 @@ pre code{
     display: block;
     padding: 16px;
     user-select: all;
+    border-radius: 4px;
 }
 
 
@@ -586,7 +584,7 @@ pre code{
 
     aside {
         width: 400px;
-        padding: 16px 8px 16px 64px;
+        padding: 16px 8px 16px 24px;
     }
 }
 
