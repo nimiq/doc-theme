@@ -10,6 +10,7 @@
     {% assign minHeader = include.h_min | default: 1 %}
     {% assign maxHeader = include.h_max | default: 6 %}
     {% assign nodes = include.html | markdownify | split: '<h' %}
+    {% assign fixed_header = include.header %}
     {% assign firstHeader = true %}
 
     {% capture listModifier %}{% if orderedList %}1.{% else %}-{% endif %}{% endcapture %}
@@ -25,8 +26,16 @@
             {% continue %}
         {% endif %}
 
+
+        {% comment %}
+            This block assumes the first heading in an md file is the highest level one
+        {% endcomment %}
         {% if firstHeader %}
             {% assign minHeader = headerLevel %}
+        {% endif %}
+
+        {% if fixed_header %}
+          {% increment headerLevel %}
         {% endif %}
 
         {% assign indentAmount = headerLevel | minus: minHeader | add: 1 %}

@@ -12,7 +12,7 @@
     <main>
         <section>
             <a href="#nav" id="nav-button">
-                <svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+             >    <svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 0h24v24H0z" fill="none" />
                     <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
                 </svg>
@@ -34,9 +34,35 @@
             </a>
         </header>
         <nav>
-          {% assign pages = site.pages | order: dir.length | reverse %}
-          {% for node in pages %}
-            {% include toc.html html=node.content url=node.url h_max=2 %}
+          {% assign firstSubmodule = true %}
+
+          {% assign min = 0 %}
+          {% assign current = 0 %}
+          {% assign pages = site.pages %}
+          {% assign done = "" %}
+
+          {% for node in site.pages %}
+            {% assign min = 1000 %}
+            {% assign doneList = done | split: "," %}
+            {% for node in pages %}
+              {% if node.dir.size < min %}
+                  {% unless doneList contains node.path %}
+                    {% assign current = node %}
+                    {% assign min = current.dir.size %}
+                {% endunless %}
+              {% endif %}
+            {% endfor %}
+
+            {% capture done %} {{ done }},{{ current.path }}{% endcapture %}
+            {% assign levels = current.path | split: "/" %}
+
+            <pre> {{ levels.size }} </pre>
+
+            {% if levels.size < 3 %}
+              {% include toc.html html=current.content url=current.url h_max=2 %}
+            {% else %}
+              moo {{ current.title }}
+            {% endif %}
           {% endfor %}
         </nav>
     </aside>

@@ -1,3 +1,5 @@
 remote_theme: nimiq/doc-theme
 title: "Nimiq"
 description: "Theme for Documentations"
+submodule_section: "Submodules"
+exclude: ["node_modules/*", "./*/*/**"]
