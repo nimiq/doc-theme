@@ -28,6 +28,14 @@
         </section>
     </main>
     <aside id="nav">
+      <!-- HTML elements for search -->
+        <div id="search-container">
+            <input type="text" id="search-input" placeholder="search...">
+            <nav>
+              <ul id="results-container"></ul>
+            </nav>
+        </div>
+
         <header>
             <a href="{{ site.baseurl }}/" class="logo">
                 <h1>{{ site.title | default: site.github.repository_name }}</h1>
@@ -97,6 +105,34 @@
         </nav>
     </aside>
     <a href="#" id="nav-backdrop"></a>
+    <script src="{{ site.baseurl }}/assets/js/Helper.js"></script>
+    <script src="{{ site.baseurl }}/assets/js/FuzzySearch.js"></script>
+    <script src="{{ site.baseurl }}/assets/js/search.js"></script>
+    <script>
+      var input = document.getElementById("search-input");
+      var list = document.getElementById("results-container");
+      input.addEventListener('keyup', e => {
+        var query = input.value;
+
+        if (query.length > 2)
+          search(query).then(results => {
+            results = results.slice(0, 10);
+            var html = "";
+            for (result of results) {
+              var item = result.item, snippet = result.result.snippet;
+              var parts = snippet.split(query);
+              if (parts.length > 1) {
+                snippet = parts.join(`<strong>${query}</strong>`);
+              }
+              html += `<li><a href="${item.url}">${item.title}</a><ul><li>&hellip;${snippet}&hellip;</li></ul></li>`
+            }
+            list.innerHTML = html;
+            console.log("...");
+          });
+        else list.innerHTML = "";
+        document.getElementById("search-container").classList.toggle("has-results", query.length > 2);
+      });
+    </script>
     <script>
       document.getElementById("mobile-header").innerText = document.querySelector("main h1").innerText;
     </script>
