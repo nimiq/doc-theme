@@ -2,9 +2,9 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "doc-theme"
-  spec.version       = "0.1.0"
-  spec.authors       = ["robinlinus"]
-  spec.email         = ["robinlinus@users.noreply.github.com"]
+  spec.version       = "0.2.0"
+  spec.authors       = ["The Nimiq Foundation"]
+  spec.email         = ["dev@nimiq.com"]
 
   spec.summary       = "A clean theme for documentation using markdown on GitHub Pages."
   spec.homepage      = "https://nimiq.github.io/doc-theme/"

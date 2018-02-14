@@ -25,26 +25,11 @@ section {
     padding: 16px 0 16px 48px;
 }
 
-aside {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 320px;
-    max-width: 100%;
-    padding: 16px 0px 16px 72px;
-    background: white;
-    transition: transform 300ms;
-}
-
 footer {
     width: 100%;
     padding: 32px 24px;
     margin-top: 80px;
 }
-
-
-
 
 
 
@@ -165,6 +150,13 @@ aside:before {
     background: linear-gradient(#536DFE, #a553fe);
 }
 
+::selection {
+  background: #64FFDA;
+}
+
+::-moz-selection {
+  background: #64FFDA;
+}
 
 
 /* Lists */
@@ -318,9 +310,30 @@ code {
 
 /* Table of Contents */
 
+
+aside {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 320px;
+    max-width: 100%;
+    padding: 16px 0px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    background: white;
+    transition: transform 300ms;
+}
+
 nav {
-    padding-top: 24px;
-    padding-bottom: 64px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    padding-left: 56px;
+    flex-grow: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
 }
 
 nav li {
@@ -357,10 +370,18 @@ nav li a:hover {
     display: inline;
 }
 
-nav li a:after {
+nav li > label {
+    display: block;
+}
+
+nav li > label + input {
+    display: none;
+}
+
+nav li > a:before, nav li > label:before {
     content: '';
     position: absolute;
-    left: 16px;
+    left: 0px;
     right: 0;
     height: 32px;
     margin-top: -4px;
@@ -368,7 +389,7 @@ nav li a:after {
     opacity: 0;
 }
 
-nav li a:hover:after {
+nav li:hover > a:before, nav li:hover > label:before  {
     opacity: 1;
 }
 
@@ -383,12 +404,38 @@ nav ul.active-toc > li > a:before{
     margin-top: -1px;
 }
 
+nav > ul > li > ul > li, nav > ul > li > ul {
+    max-height: 2.5rem;
+    opacity: 1;
+    will-change: opacity;
+    overflow: hidden;
+    transition: max-height 300ms, opacity 200ms, margin-top 300ms;
+}
+
+nav > ul > li > ul {
+    max-height: 25rem;
+}
+
+nav > ul > li > :checked ~ ul > li, nav > ul > li > :checked ~ ul {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0;
+}
+
+nav > ul > li > :checked ~ ul > li > a:before {
+    display: none;
+}
+
+
+
+
 /* Logo */
 
 a.logo {
     margin-top: 3px;
     display: block;
     border-bottom: none;
+    margin-left: 56px;
 }
 
 .logo h1 {
@@ -455,18 +502,32 @@ a.logo {
     opacity: 1;
 }
 
-a#nav-button{
+a#nav-button {
     display: none;
 }
 
+#mobile-header {
+    padding-left: 16px;
+    font-size: 16px;
+    font-weight: 300;
+}
 
+
+/* Code */
+
+pre code{
+    display: block;
+    padding: 16px;
+    user-select: all;
+    border-radius: 4px;
+}
 
 
 
 /* Responsiveness */
 
 /* all touch devices */
-@media (pointer: coarse), (max-width: 1040px) {
+@media  (max-width: 1040px) {
     table {
         overflow: auto;
         width: 100%;
@@ -560,7 +621,7 @@ a#nav-button{
 
     aside {
         width: 400px;
-        padding: 16px 8px 16px 120px;
+        padding: 16px 8px 16px 24px;
     }
 }
 

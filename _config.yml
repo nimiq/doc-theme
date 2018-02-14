@@ -1,13 +1,5 @@
 remote_theme: nimiq/doc-theme
-title: "Doc Theme"
-description: "for GitHub Pages"
-show_downloads: false
-markdown: kramdown
-
-defaults:
-  -
-    scope:
-      path: ""
-      type: "pages"
-    values:
-      layout: "default"
+title: "Nimiq"
+description: "Theme for Documentations"
+submodule_section: "Submodules"
+exclude: ["node_modules/*", "./*/*/**"]

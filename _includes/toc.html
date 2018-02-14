@@ -11,6 +11,7 @@
     {% assign minHeader = include.h_min | default: 1 %}
     {% assign maxHeader = include.h_max | default: 6 %}
     {% assign nodes = include.html | markdownify | split: '<h' %}
+    {% assign fixed_header = include.header %}
     {% assign firstHeader = true %}
 
     {% capture listModifier %}{% if orderedList %}1.{% else %}-{% endif %}{% endcapture %}
@@ -26,9 +27,16 @@
             {% continue %}
         {% endif %}
 
+
+        {% comment %}
+            This block assumes the first heading in an md file is the highest level one
+        {% endcomment %}
         {% if firstHeader %}
-            {% assign firstHeader = false %}
             {% assign minHeader = headerLevel %}
+        {% endif %}
+
+        {% if fixed_header %}
+          {% increment headerLevel %}
         {% endif %}
 
         {% assign indentAmount = headerLevel | minus: minHeader | add: 1 %}
@@ -45,11 +53,16 @@
         {% for i in (1..indentAmount) %}
             {% assign space = space | prepend: '    ' %}
         {% endfor %}
+        {% assign spaceNext = space | prepend: '    ' %}
 
         {% unless include.item_class == blank %}
             {% capture listItemClass %}{:.{{ include.item_class | replace: '%level%', headerLevel }}}{% endcapture %}
         {% endunless %}
 
+        {% capture url %}{{ site.baseurl }}{{ include.url }}#{{ html_id }}{% endcapture %}
+        {% capture label %}{% if include.sanitize %}{{ header | strip_html }}{% else %}{{ header }}{% endif %}{% endcapture %}
+        {% assign id = url | replace:'/','_'| replace:'#','_' %}
+      
         {% capture jstree %}
           {{ jstree }}
           {
@@ -59,11 +72,20 @@
             fragment: "{{ html_id }}"
           },
         {% endcapture %}
+      
+        {% if firstHeader %}
+            {% capture my_toc %}{{ my_toc }}
+{{ space }}{{ listModifier }} {{ listItemClass }} <label for="{{ id }}">{{ label }}</label>
+<input type="checkbox" id="{{ id }}" {% if page.url != include.url %}checked>{% else %}><script> document.getElementById("{{ id }}").scrollIntoView(); </script>{% endif %}{% endcapture %}
+            {% capture my_toc %}{{ my_toc }}
+{{ spaceNext }}{{ listModifier }} {{ listItemClass }} [Introduction]({{ url }}){% endcapture %}
+        {% else %}
+            {% capture my_toc %}{{ my_toc }}
+{{ space }}{{ listModifier }} {{ listItemClass }} [{{ label }}]({%if firstHeader %}#{% else %}{{ url }}{% endif %}){% endcapture %}
 
-{% comment %}{{ site.baseurl }}{{ include.url }}#{{ html_id }}{% endcomment %}
-        {% capture my_toc %}{{ my_toc }}
-{{ space }}{{ listModifier }} {{ listItemClass }} [{% if include.sanitize %}{{ header | strip_html }}{% else %}{{ header }}{% endif %}]({{ site.baseurl }}{{ include.url }}#{{ html_id }}){% endcapture %}
+        {% endif %}
 
+        {% assign firstHeader = false %}
     {% endfor %}
 
     {% if include.class %}

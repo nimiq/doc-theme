@@ -16,6 +16,7 @@
                     <path d="M0 0h24v24H0z" fill="none" />
                     <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
                 </svg>
+                <div id="mobile-header"></div>
             </a>
             <a href="{{ site.github.repository_url }}/edit/master/{{ page.path }}" target="_blank" class="improve-me">
                 <svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
@@ -42,37 +43,72 @@
             </a>
         </header>
         <nav>
-          {% include toc.html html=content url=page.url h_max=3 class="active-toc" %}
-          {% for node in site.pages %}
-            {% unless node.title == page.title %}
-              {% include toc.html html=node.content url=node.url h_max=2 %}
-            {% endunless %}
+
+          {% assign pages = site.pages %}
+          {% assign done = "" %}
+
+          {% assign submodules = "" %}
+          {% for node in pages %}
+            {% if node.name == "README.md" and node.dir != "/" %}
+              {% assign packageDir = node.dir %}
+              {% capture submodules %}{{ submodules }}
+                {% include toc.html html=node.content url=node.url h_max=1 %}
+              {% endcapture %}
+              {% capture done %} {{ done }},{{ node.path }}{% endcapture %}
+              {% for sub_doc in pages %}
+                {% if sub_doc.name == "README.md" %}
+                  {% continue %}
+                {% endif %}
+
+                {% assign x = sub_doc.dir | split: packageDir %}
+                {% if packageDir == sub_doc.dir or x.size > 1 %}
+                  {% capture submodules %}{{ submodules }}
+                    {% include toc.html html=sub_doc.content url=sub_doc.url h_max=1 %}
+                  {% endcapture %}
+                  {% capture done %} {{ done }},{{ sub_doc.path }}{% endcapture %}
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+
           {% endfor %}
+
+          {% for node in pages %}
+            {% assign current = false %}
+            {% assign min = 1000 %}
+            {% assign doneList = done | split: "," %}
+            {% for node in pages %}
+              {% if node.dir.size < min %}
+                  {% unless doneList contains node.path %}
+                    {% assign current = node %}
+                    {% assign min = current.dir.size %}
+                {% endunless %}
+              {% endif %}
+            {% endfor %}
+
+            {% unless current %}
+              {% break %}
+            {% endunless %}
+
+            {% include toc.html html=current.content url=current.url h_max=2 %}
+
+            {% capture done %} {{ done }},{{ current.path }}{% endcapture %}
+          {% endfor %}
+
+          <ul>
+            <li>
+              <label for="sections">Submodules</label>
+              <input type="checkbox" id="sections" checked="">
+              {{ submodules }}
+            </li>
+          </ul>
+
         </nav>
     </aside>
     <a href="#" id="nav-backdrop"></a>
-
-    <!-- script pointing to jekyll-search.js -->
-    <!--<script src="{{ site.baseurl }}/assets/js/simple-jekyll-search.min.js"></script>
-
-    <script>
-      window.simpleJekyllSearch = new SimpleJekyllSearch({
-        searchInput: document.getElementById('search-input'),
-        resultsContainer: document.getElementById('results-container'),
-        json: '{{ site.baseurl }}/search.json',
-        searchResultTemplate: '<li><a href="{url}" title="{desc}">{title}</a></li>',
-        noResultsText: 'No results found',
-        templateMiddleware: function() { console.log(arguments); },
-        limit: 10,
-        fuzzy: true,
-        exclude: ['search']
-      })
-    </script>-->
     <script src="{{ site.baseurl }}/assets/js/Helper.js"></script>
     <script src="{{ site.baseurl }}/assets/js/FuzzySearch.js"></script>
     <script src="{{ site.baseurl }}/assets/js/search.js"></script>
     <script>
-
       var input = document.getElementById("search-input");
       var list = document.getElementById("results-container");
       input.addEventListener('keyup', e => {
@@ -96,8 +132,9 @@
         else list.innerHTML = "";
         document.getElementById("search-container").classList.toggle("has-results", query.length > 2);
       });
-
-
+    </script>
+    <script>
+      document.getElementById("mobile-header").innerText = document.querySelector("main h1").innerText;
     </script>
 </body>
 
