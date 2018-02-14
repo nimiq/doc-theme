@@ -34,14 +34,37 @@
             </a>
         </header>
         <nav>
-          {% assign firstSubmodule = true %}
 
-          {% assign min = 0 %}
-          {% assign current = 0 %}
           {% assign pages = site.pages %}
           {% assign done = "" %}
 
-          {% for node in site.pages %}
+          {% assign submodules = "" %}
+          {% for node in pages %}
+            {% if node.name == "README.md" and node.dir != "/" %}
+              {% assign packageDir = node.dir %}
+              {% capture submodules %}{{ submodules }}
+                {% include toc.html html=node.content url=node.url h_max=1 %}
+              {% endcapture %}
+              {% capture done %} {{ done }},{{ node.path }}{% endcapture %}
+              {% for sub_doc in pages %}
+                {% if sub_doc.name == "README.md" %}
+                  {% continue %}
+                {% endif %}
+
+                {% assign x = sub_doc.dir | split: packageDir %}
+                {% if packageDir == sub_doc.dir or x.size > 1 %}
+                  {% capture submodules %}{{ submodules }}
+                    {% include toc.html html=sub_doc.content url=sub_doc.url h_max=1 %}
+                  {% endcapture %}
+                  {% capture done %} {{ done }},{{ sub_doc.path }}{% endcapture %}
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+
+          {% endfor %}
+
+          {% for node in pages %}
+            {% assign current = false %}
             {% assign min = 1000 %}
             {% assign doneList = done | split: "," %}
             {% for node in pages %}
@@ -53,17 +76,23 @@
               {% endif %}
             {% endfor %}
 
+            {% unless current %}
+              {% break %}
+            {% endunless %}
+
+            {% include toc.html html=current.content url=current.url h_max=2 %}
+
             {% capture done %} {{ done }},{{ current.path }}{% endcapture %}
-            {% assign levels = current.path | split: "/" %}
-
-            <pre> {{ levels.size }} </pre>
-
-            {% if levels.size < 3 %}
-              {% include toc.html html=current.content url=current.url h_max=2 %}
-            {% else %}
-              moo {{ current.title }}
-            {% endif %}
           {% endfor %}
+
+          <ul>
+            <li>
+              <label for="sections">Submodules</label>
+              <input type="checkbox" id="sections" checked="">
+              {{ submodules }}
+            </li>
+          </ul>
+
         </nav>
     </aside>
     <a href="#" id="nav-backdrop"></a>
