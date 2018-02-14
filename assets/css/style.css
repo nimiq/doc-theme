@@ -472,8 +472,14 @@ a.logo {
     opacity: 1;
 }
 
-a#nav-button{
+a#nav-button {
     display: none;
+}
+
+#mobile-header {
+    padding-left: 16px;
+    font-size: 16px;
+    font-weight: 300;
 }
 
 

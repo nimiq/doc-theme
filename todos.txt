@@ -7,12 +7,13 @@
 	- Structure
 #		- how to with submodule?
 #		- what's the deepest crawling depth? use excludes: '*/*/**' in _config.yml
-:		- if a subfolder doesn't contain a readme about its own subfolders, automatically generate an index.html from the `h1` and descriptions of its subfolders
+?		- if a subfolder doesn't contain a readme about its own subfolders, automatically generate an index.html from the `h1` and descriptions of its subfolders
 			- see /elements
 
 - Nice To Have
 	- Search
-	- Title in header on mobile
+#	- Title in header on mobile
 	- demos
 
-- "Ecosystem UX" > "UX Ecosystem"
+- Ideas
+  - "Ecosystem UX" > "UX Ecosystem"
