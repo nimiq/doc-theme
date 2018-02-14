@@ -286,6 +286,36 @@ code {
 
 
 
+/* Search */
+
+#search-container {
+    z-index: 1;
+    position: absolute;
+    background: white;
+}
+
+#results-container {
+    margin-top: 0px;
+}
+
+#search-container nav {
+    padding: 0 16px;
+    box-shadow: 0 5px 8px rgba(0,0,0,.125);
+    max-height: 0;
+    transition: height 300ms, max-height 300ms;
+}
+
+#search-container.has-results nav {
+    padding: 24px 16px 32px 16px;
+	max-height: 50rem;
+}
+
+
+
+
+
+
+
 /* Table of Contents */
 
 nav {

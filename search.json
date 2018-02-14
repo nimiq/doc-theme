@@ -12,7 +12,7 @@ layout: null
       "tags"     : "{{ page.tags | join: ', ' }}",
       "url"      : "{{ site.baseurl }}{{ page.url }}",
       "date"     : "{{ page.date }}",
-      "content"  : "{{ page.content | strip_html | strip_newlines | escape }}"
+      "content"  : "{{ page.content | markdownify | strip_html | strip_newlines | escape }}"
     } {% unless forloop.last %},{% endunless %}
   {% endfor %}
   {% for post in site.posts %}
