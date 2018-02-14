@@ -5,9 +5,9 @@
 #		- accordeon
 #		- should never switch order of items + sort pages by depth in tree
 	- Structure
-		- how to with submodule?
-		- what's the deepest crawling depth? use excludes: '*/*/**' in _config.yml
-		- if a subfolder doesn't contain a readme about its own subfolders, automatically generate an index.html from the `h1` and descriptions of its subfolders
+#		- how to with submodule?
+#		- what's the deepest crawling depth? use excludes: '*/*/**' in _config.yml
+:		- if a subfolder doesn't contain a readme about its own subfolders, automatically generate an index.html from the `h1` and descriptions of its subfolders
 			- see /elements
 
 - Nice To Have
