@@ -28,15 +28,13 @@
         </section>
     </main>
     <aside id="nav">
-      <!-- HTML elements for search -->
-        <div id="search-container">
-            <input type="text" id="search-input" placeholder="search...">
-            <nav>
-              <ul id="results-container"></ul>
-            </nav>
-        </div>
-
         <header>
+            <div id="search-container">
+                <input type="text" id="search-input" placeholder="search...">
+                <nav>
+                  <ul id="results-container"></ul>
+                </nav>
+            </div>
             <a href="{{ site.baseurl }}/" class="logo">
                 <h1>{{ site.title | default: site.github.repository_name }}</h1>
                 <p>{{ site.description | default: site.github.project_tagline }}</p>

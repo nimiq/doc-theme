@@ -284,6 +284,7 @@ code {
     z-index: 1;
     position: absolute;
     background: white;
+    margin-left: 56px;
 }
 
 #results-container {
@@ -292,6 +293,7 @@ code {
 
 #search-container nav {
     padding: 0 16px;
+    margin: 0;
     box-shadow: 0 5px 8px rgba(0,0,0,.125);
     max-height: 0;
     transition: height 300ms, max-height 300ms;
@@ -405,7 +407,7 @@ nav ul.active-toc > li > a:before{
 }
 
 nav > ul > li > ul > li, nav > ul > li > ul {
-    max-height: 2.5rem;
+    max-height: 4rem;
     opacity: 1;
     will-change: opacity;
     overflow: hidden;
