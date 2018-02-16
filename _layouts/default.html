@@ -142,7 +142,7 @@
         } else list.innerHTML = "";
         setTimeout(_ => toggleList(true), 1);
       });
-      input.addEventListener('focusout', e => { toggleList(false); });
+      input.addEventListener('focusout', e => { setTimeout(_ => toggleList(false), 250); }); // race conditions: needs time to send click event before hiding results
       input.addEventListener('focusin', e => { toggleList(true); });
     </script>
     <script>
