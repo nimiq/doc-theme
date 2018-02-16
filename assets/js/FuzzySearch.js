@@ -76,7 +76,7 @@ class FuzzySearch {
     for (var i = 0; i <= query.length - GRAM_LENGTH; i++) {
         ngrams.push(query.substr(i, GRAM_LENGTH));
     }
-    console.log('ngrams', ngrams);
+    //console.log('ngrams', ngrams);
 
     const indexes = [];
     let index = 0;
@@ -151,12 +151,6 @@ class FuzzySearch {
     const snippetLength = 40;
     const snippet = item.substr(index-snippetLength/2, snippetLength);
 
-    console.log(query);
-    console.log(score);
-    console.log(indexes);
-    console.log(snippet);
-    //console.log(item);
-    console.log();
 
     return result(true, score,  index, snippet);
   }

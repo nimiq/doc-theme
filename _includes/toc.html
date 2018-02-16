@@ -1,10 +1,8 @@
-{% comment %}
-    Using Allejo's Jekyll TOC version 1.0.4
-    https://github.com/allejo/jekyll-toc
-{% endcomment %}
-
-{% assign jstree = "" %}
 {% capture tocWorkspace %}
+    {% comment %}
+        Using Allejo's Jekyll TOC version 1.0.4
+        https://github.com/allejo/jekyll-toc
+    {% endcomment %}
 
     {% capture my_toc %}{% endcapture %}
     {% assign orderedList = include.ordered | default: false %}
@@ -62,17 +60,7 @@
         {% capture url %}{{ site.baseurl }}{{ include.url }}#{{ html_id }}{% endcapture %}
         {% capture label %}{% if include.sanitize %}{{ header | strip_html }}{% else %}{{ header }}{% endif %}{% endcapture %}
         {% assign id = url | replace:'/','_'| replace:'#','_' %}
-      
-        {% capture jstree %}
-          {{ jstree }}
-          {
-            title: "{{ header }}",
-            url: "{{ include.url }}",
-            whitespace: "{{ space }}",
-            fragment: "{{ html_id }}"
-          },
-        {% endcapture %}
-      
+
         {% if firstHeader %}
             {% capture my_toc %}{{ my_toc }}
 {{ space }}{{ listModifier }} {{ listItemClass }} <label for="{{ id }}">{{ label }}</label>
@@ -98,16 +86,3 @@
 {{ my_toc | lstrip }}{% endcapture %}
     {% endif %}
 {% endcapture %}{% assign tocWorkspace = '' %}{{ my_toc | markdownify | strip }}
-<script>
-  var subtree = [{{ jstree }}];
-  if (subtree.length > 0) {
-    if (!window.jstree) window.jstree = {};
-    // the first one is the page itself
-    var page = subtree.shift();
-    page.fragment = ""; // not need for page
-    window.jstree[page.url] = {
-      node: page,
-      subnodes: subtree
-    };
-  }
-</script>
