@@ -284,7 +284,7 @@ code {
     z-index: 1;
     position: absolute;
     background: white;
-    margin-left: 56px;
+    margin-left: 0;
 }
 
 #results-container {
@@ -297,12 +297,14 @@ code {
     box-shadow: 0 5px 8px rgba(0,0,0,.125);
     max-height: 0;
     transition: height 300ms, max-height 300ms;
+    overflow: hidden;
 }
 
 #search-container.has-results nav {
     padding: 24px 16px 32px 16px;
-	max-height: 50rem;
+    max-height: 50rem;
 }
+
 
 
 
@@ -331,7 +333,7 @@ aside {
 nav {
     margin-top: 24px;
     margin-bottom: 24px;
-    padding-left: 56px;
+    padding-left: 0;
     flex-grow: 1;
     overflow-x: hidden;
     overflow-y: auto;
@@ -437,7 +439,7 @@ a.logo {
     margin-top: 3px;
     display: block;
     border-bottom: none;
-    margin-left: 56px;
+    margin-left: 0;
 }
 
 .logo h1 {
@@ -557,11 +559,16 @@ pre code{
         box-shadow: var(--box-shadow);
         width: 312px;
         z-index: 1;
-        padding: 16px 16px 16px 56px;
+        padding: 16px 24px 16px 56px;
     }
 
     aside:target {
         transform: translate(0);
+    }
+
+    #search-container:not(.nothing-found) nav {
+        position: relative;
+        left: -20px;
     }
 
     a#nav-button{
@@ -623,7 +630,7 @@ pre code{
 
     aside {
         width: 400px;
-        padding: 16px 8px 16px 24px;
+        padding: 16px 8px 16px 80px;
     }
 }
 

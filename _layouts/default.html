@@ -41,7 +41,7 @@
             </a>
         </header>
         <nav>
-
+          {% capture trash %}
           {% assign pages = site.pages %}
           {% assign done = "" %}
 
@@ -70,6 +70,7 @@
 
           {% endfor %}
 
+          {% assign superToc = "" %}
           {% for node in pages %}
             {% assign current = false %}
             {% assign min = 1000 %}
@@ -87,11 +88,11 @@
               {% break %}
             {% endunless %}
 
-            {% include toc.html html=current.content url=current.url h_max=2 %}
+            {% capture superToc %}{{ superToc }}{% include toc.html html=current.content url=current.url h_max=2 %}{% endcapture %}
 
             {% capture done %} {{ done }},{{ current.path }}{% endcapture %}
           {% endfor %}
-
+          {% endcapture %}{{ superToc }}
           <ul>
             <li>
               <label for="sections">Submodules</label>
@@ -107,29 +108,42 @@
     <script src="{{ site.baseurl }}/assets/js/FuzzySearch.js"></script>
     <script src="{{ site.baseurl }}/assets/js/search.js"></script>
     <script>
+      var css = document.getElementById("search-container").classList;
       var input = document.getElementById("search-input");
       var list = document.getElementById("results-container");
+      var toggleList = (show, query = input.value) => {
+        if (show) {
+          css.toggle("has-results", (query.length > 2) && (list.innerHTML != ""));
+          css.toggle("nothing-found", (query.length > 2) && ((list.innerHTML == "") || list.innerHTML.indexOf("Nothing found") > -1 ));
+        } else {
+          css.remove("has-results", "nothing-found");
+        }
+      };
       input.addEventListener('keyup', e => {
         var query = input.value;
-
-        if (query.length > 2)
+        console.log(`${query}...`);
+        if (query.length > 2) {
           search(query).then(results => {
             results = results.slice(0, 10);
             var html = "";
-            for (result of results) {
-              var item = result.item, snippet = result.result.snippet;
-              var parts = snippet.split(query);
-              if (parts.length > 1) {
-                snippet = parts.join(`<strong>${query}</strong>`);
+            if (results.length > 0) {
+              for (result of results) {
+                var item = result.item, snippet = result.result.snippet;
+                var parts = snippet.split(query);
+                if (parts.length > 1) {
+                  snippet = parts.join(`<strong>${query}</strong>`);
+                }
+                html += `<li><a href="${item.url}">${item.title}</a><ul><li>&hellip;${snippet}&hellip;</li></ul></li>`
               }
-              html += `<li><a href="${item.url}">${item.title}</a><ul><li>&hellip;${snippet}&hellip;</li></ul></li>`
-            }
+            } else html = "<li>Nothing found</li>";
             list.innerHTML = html;
-            console.log("...");
           });
-        else list.innerHTML = "";
-        document.getElementById("search-container").classList.toggle("has-results", query.length > 2);
+
+        } else list.innerHTML = "";
+        setTimeout(_ => toggleList(true), 1);
       });
+      input.addEventListener('focusout', e => { toggleList(false); });
+      input.addEventListener('focusin', e => { toggleList(true); });
     </script>
     <script>
       document.getElementById("mobile-header").innerText = document.querySelector("main h1").innerText;
