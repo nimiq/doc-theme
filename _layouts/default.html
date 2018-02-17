@@ -63,7 +63,10 @@
 
                 {% assign x = sub_doc.dir | split: packageDir %}
                 {% if x.size > 1 %}
-                  {% capture submodules %}{{ submodules }}
+                ### disable loading submodule pages as they clutter the menu too much.
+                ### A submodule needs a good README with some h2 headings structuring what's to be known about the module.
+                ### When the user then digs deeper by clicking the link, the menu "zooms in" on module level showing all sub pages.
+                  {% capture submodules__ %}{{ submodules }}
                     {% include toc.html html=sub_doc.content url=sub_doc.url h_max=1 %}
                   {% endcapture %}
                   {% capture done %} {{ done }},{{ sub_doc.path }}{% endcapture %}
@@ -96,7 +99,9 @@
 
             {% capture done %} {{ done }},{{ current.path }}{% endcapture %}
           {% endfor %}
+          {% assign submodules = submodules | strip %}
           {% endcapture %}{{ superToc }}
+          {% if submodules.size > 0 %}
           <ul>
             <li>
               <label for="sections">Submodules</label>
@@ -104,6 +109,7 @@
               {{ submodules }}
             </li>
           </ul>
+          {% endif %}
 
         </nav>
     </aside>
