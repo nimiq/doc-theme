@@ -57,101 +57,49 @@ class FuzzySearch {
       results.sort((a, b) => a.result.score - b.result.score);
     }
 
-    //return results.map(result => result.item);
     return results;
   }
 
-  static isMatch(item, query, caseSensitive) {
-    const GRAM_LENGTH = 3;
-    const orgItem = item;
-    let result = (found, score = null, location = null, snippet = null) => { return { found, score, location, snippet } }
+  // ngram based search
+  static isMatch(item, query, caseSensitive = false) {
+    const GRAM_LENGTH = 3,
+          SNIPPET_LENGTH = 80,
+          orgItem = item;
+    let result = (found, score, location, snippet) => { return { found, score, location, snippet } }
 
-
-    if (! caseSensitive) {
+    if (!caseSensitive) {
       item = item.toLocaleLowerCase();
       query = query.toLocaleLowerCase();
     }
 
+    // ngrams
     let ngrams = []
     for (var i = 0; i <= query.length - GRAM_LENGTH; i++) {
         ngrams.push(query.substr(i, GRAM_LENGTH));
     }
-    //console.log('ngrams', ngrams);
 
+    // search
     const indexes = [];
     let index = 0;
-
     for (let ngram of ngrams) {
       index = item.indexOf(ngram, index);
-
-      if (index === -1) {
-        return result(false);
-      }
-
-      indexes.push(index);
-
-      index++;
+      if (index === -1) return result(false);
+      indexes.push(index++);
     }
 
+    // scoring
     let score = 1;
     if (item !== query) {
-        //score = indexes.reduce((s, i, ii, a) => s + i - (a[ii] || 0), 2);
         score = indexes.reduce((s, i, ii, a) => s + i - (a[ii-1] || a[0]), -indexes.length+2);
     }
 
+    // snippet
     index = indexes[0];
-    const snippetLength = 80;
-    let snippet = orgItem.substr(Math.max(0, index-snippetLength/4), snippetLength);
-    while (snippet.length > snippetLength-10 && snippet.charAt(snippet.length-1) != ' ') {
+    let snippet = orgItem.substr(Math.max(0, index-SNIPPET_LENGTH/4), SNIPPET_LENGTH);
+    while (snippet.length > SNIPPET_LENGTH-10 && snippet.charAt(snippet.length-1) != ' ') {
         snippet = snippet.substr(0, snippet.length-1);
     }
 
-    console.log(query);
-    console.log(score);
-    console.log(indexes);
-    console.log(snippet);
-    //console.log(item);
-    console.log();
-
-    return result(true, score,  index, snippet);
-  }
-
-  static isMatchDumb(item, query, caseSensitive) {
-    if (! caseSensitive) {
-      item = item.toLocaleLowerCase();
-      query = query.toLocaleLowerCase();
-    }
-
-    const letters = query.split('');
-    const indexes = [];
-
-    let index = 0;
-    let result = (found, score = null, location = null, snippet = null) => { return { found, score, location, snippet } }
-
-    for (let i = 0; i < letters.length; i++) {
-      const letter = letters[i];
-
-      index = item.indexOf(letter, index);
-
-      if (index === -1) {
-        return result(false);
-      }
-
-      indexes.push(index);
-
-      index++;
-    }
-
-    let score = 1;
-    if (item !== query) {
-        //score = indexes.reduce((s, i, ii, a) => s + i - (a[ii] || 0), 2);
-        score = indexes.reduce((s, i, ii, a) => s + i - (a[ii-1] || a[0]), -indexes.length+2);
-    }
-    index = indexes[0];
-    const snippetLength = 40;
-    const snippet = item.substr(index-snippetLength/2, snippetLength);
-
-
-    return result(true, score,  index, snippet);
+    return result(true, score, index, snippet);
   }
 }

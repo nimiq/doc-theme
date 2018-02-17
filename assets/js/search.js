@@ -1,4 +1,4 @@
-let loadData = fetch("/search.json");
+let loadData = fetch("assets/js/search.json");
 let dataFile = null, data = null;
 
 async function search(words) {
@@ -8,8 +8,5 @@ async function search(words) {
         data = await dataFile.json();
     }
 
-    let results = new FuzzySearch(data,['content', 'title'], { sort: true }).search(words);
-
-    console.log(`Found ${results.length} results.`);
-    return results;
+    return new FuzzySearch(data, ['content', 'title'], { sort: true }).search(words);
 };
