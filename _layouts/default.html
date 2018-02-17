@@ -160,6 +160,33 @@
     <script>
       document.getElementById("mobile-header").innerText = document.querySelector("main h1").innerText;
     </script>
+  <script>
+    var anchorForId = function (id, text) {
+      var anchor = document.createElement("a");
+      anchor.className = "header-link";
+      anchor.href      = "#" + id;
+      anchor.title     = `Copy and share permalink of "${text}"`;
+      return anchor;
+    };
+
+    var linkifyAnchors = function (level, containingElement) {
+      var headers = containingElement.getElementsByTagName("h" + level);
+      for (var h = 0; h < headers.length; h++) {
+        var header = headers[h];
+
+        if (typeof header.id !== "undefined" && header.id !== "") {
+          header.appendChild(anchorForId(header.id, header.innerText));
+        }
+      }
+    };
+
+    var content = document.getElementsByTagName("main")[0];
+    if (content) {
+      for (var level = 1; level <= 6; level++) {
+        linkifyAnchors(level, content);
+      }
+    }
+  </script>
 </body>
 
 </html>
