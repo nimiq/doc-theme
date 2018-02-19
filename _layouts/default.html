@@ -51,16 +51,18 @@
           {% for node in pages %}
             {% if node.name == "README.md" and node.dir != "/" %}
               {% assign packageDir = node.dir %}
-              {% if site.detailedSubmodules %}
-                {% capture submodules %}{{ submodules }}
-                  <li><a href="{{ site.baseurl }}{{ node.url }}">{{ node.title }}</a></li>
-                {% endcapture %}
-              {% else %}
+              {% capture done %} {{ done }},{{ node.path }}{% endcapture %}
+
+              {% if site.submodules == "detailed" %}
                 {% capture submodules %}{{ submodules }}
                   {% include toc.html html=node.content url=node.url h_max=2 %}
                 {% endcapture %}
+              {% elsif site.submodules != "none" %}
+                {% capture submodules %}{{ submodules }}
+                  <li><a href="{{ site.baseurl }}{{ node.url }}">{{ node.title }}</a></li>
+                {% endcapture %}
               {% endif %}
-              {% capture done %} {{ done }},{{ node.path }}{% endcapture %}
+
               {% for sub_doc in pages %}
                 {% if sub_doc.name == "README.md" or packageDir == sub_doc.dir %}
                   {% continue %}
@@ -68,13 +70,7 @@
 
                 {% assign x = sub_doc.dir | split: packageDir %}
                 {% if x.size > 1 %}
-                  ### disable loading submodule pages as they clutter the menu too much.
-                  ### A submodule needs a good README with some h2 headings structuring what's to be known about the module.
-                  ### When the user then digs deeper by clicking the link, the menu "zooms in" on module level showing all sub pages.
-                  {% capture submodules__ %}{{ submodules }}
-                    {% include toc.html html=sub_doc.content url=sub_doc.url h_max=1 %}
-                  {% endcapture %}
-                  ### But mark them as done, i.e. filter them out
+                  ### Filter out submodule pages as they clutter the menu too much.
                   {% capture done %} {{ done }},{{ sub_doc.path }}{% endcapture %}
                 {% endif %}
               {% endfor %}
