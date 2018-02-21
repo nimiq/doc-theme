@@ -438,7 +438,7 @@ nav > ul > li > ul > li, nav > ul > li > ul {
 }
 
 nav > ul > li > ul {
-    max-height: 25rem;
+    max-height: 100rem;
 }
 
 nav > ul > li > :checked ~ ul > li, nav > ul > li > :checked ~ ul {
