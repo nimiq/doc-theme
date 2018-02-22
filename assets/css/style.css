@@ -19,6 +19,10 @@ main {
     min-height: 100vh;
 }
 
+main img { 
+    max-width: 100%;
+}
+
 section {
     width: 720px;
     max-width: 100%;
