@@ -166,37 +166,62 @@
       });
       input.addEventListener('focusin', e => { toggleList(true); });
 
+      searchInit("{{ site.baseurl }}/assets/js/search.json");
+
+    </script>
+    <script>
+      const nav = document.querySelector("#nav > nav"),
+            inputs = Array.from(nav.querySelectorAll("ul > li > input")),
+            loadState = repeat => {
+              const state = JSON.parse(localStorage.getItem("nav"));
+
+              inputs.map((item, index) => { return item.checked = state.opened[index]; });
+
+              const id = setInterval(_ => {
+                nav.scrollTop = state.scroll;
+                if (repeat-- < 1) clearInterval(id);
+              }, 20);
+            },
+            storeState = _ => {
+              localStorage.setItem("nav", JSON.stringify({
+                scroll: nav.scrollTop,
+                opened: inputs.map(item => { return item.checked })
+              }));
+            };
+
+      window.addEventListener('pagehide', storeState, false);
+      loadState(100);
     </script>
     <script>
       document.getElementById("mobile-header").innerText = document.querySelector("main h1").innerText;
     </script>
-  <script>
-    var anchorForId = function (id, text) {
-      var anchor = document.createElement("a");
-      anchor.className = "header-link";
-      anchor.href      = "#" + id;
-      anchor.title     = `Copy and share permalink of "${text}"`;
-      return anchor;
-    };
+    <script>
+      var anchorForId = function (id, text) {
+        var anchor = document.createElement("a");
+        anchor.className = "header-link";
+        anchor.href      = "#" + id;
+        anchor.title     = `Copy and share permalink of "${text}"`;
+        return anchor;
+      };
 
-    var linkifyAnchors = function (level, containingElement) {
-      var headers = containingElement.getElementsByTagName("h" + level);
-      for (var h = 0; h < headers.length; h++) {
-        var header = headers[h];
+      var linkifyAnchors = function (level, containingElement) {
+        var headers = containingElement.getElementsByTagName("h" + level);
+        for (var h = 0; h < headers.length; h++) {
+          var header = headers[h];
 
-        if (typeof header.id !== "undefined" && header.id !== "") {
-          header.appendChild(anchorForId(header.id, header.innerText));
+          if (typeof header.id !== "undefined" && header.id !== "") {
+            header.appendChild(anchorForId(header.id, header.innerText));
+          }
+        }
+      };
+
+      var content = document.getElementsByTagName("main")[0];
+      if (content) {
+        for (var level = 1; level <= 6; level++) {
+          linkifyAnchors(level, content);
         }
       }
-    };
-
-    var content = document.getElementsByTagName("main")[0];
-    if (content) {
-      for (var level = 1; level <= 6; level++) {
-        linkifyAnchors(level, content);
-      }
-    }
-  </script>
+    </script>
 </body>
 
 </html>
