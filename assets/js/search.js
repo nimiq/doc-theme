@@ -1,5 +1,8 @@
-let loadData = fetch("assets/js/search.json");
-let dataFile = null, data = null;
+let loadData, dataFile, data;
+
+async function searchInit(url) {
+    loadData = fetch(url);
+}
 
 async function search(words) {
     'use strict';
