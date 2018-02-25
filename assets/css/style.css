@@ -407,7 +407,8 @@ nav li > label + input {
     display: none;
 }
 
-nav li > a:before, nav li > label:before {
+nav li > a:before, 
+nav li > label:before {
     content: '';
     position: absolute;
     left: 0px;
@@ -418,7 +419,8 @@ nav li > a:before, nav li > label:before {
     opacity: 0;
 }
 
-nav li:hover > a:before, nav li:hover > label:before  {
+nav li > a:hover:before, 
+nav li > label:hover:before  {
     opacity: 1;
 }
 
