@@ -307,18 +307,25 @@ code {
 
 #search-container {
     z-index: 1;
-    position: absolute;
-    background: white;
-    margin-left: 0;
+    position: relative;
+    margin: 24px 0;
 }
 
-#results-container {
-    margin-top: 0px;
+#search-input {
+    background: 0 0;
+    padding: 8px 4px 4px;
+    color: #333;
+    border: none;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(0,0,0,.5);
+    outline: none;
 }
 
 #search-container nav {
+    position: absolute;
     padding: 0 16px;
     margin: 0;
+    background: white;
     box-shadow: 0 5px 8px rgba(0,0,0,.125);
     max-height: 0;
     transition: height 300ms, max-height 300ms;
@@ -330,6 +337,24 @@ code {
     max-height: 50rem;
 }
 
+#search-container.nothing-found nav {
+    padding-bottom: 16px;
+}
+
+#results-container {
+    margin-top: 0px;
+}
+
+#results-container > li {
+    margin-top: 0px;
+    margin-bottom: 8px;
+    padding-left: 0;
+}
+
+#results-container li ul {
+    padding-top: 0px;
+    padding-left: 16px;
+}
 
 
 
@@ -363,6 +388,7 @@ nav {
     overflow-x: hidden;
     overflow-y: auto;
     position: relative;
+    left: -8px;
 }
 
 nav li {
@@ -375,6 +401,7 @@ nav ul {
 
 nav>ul {
     padding-left: 0;
+    margin-top: 8px;
 }
 
 li>ul>li:last-child {
@@ -382,7 +409,9 @@ li>ul>li:last-child {
 }
 
 nav li {
+    position: relative;
     line-height: 24px;
+    padding-left: 8px;
 }
 
 nav li a {
@@ -401,17 +430,19 @@ nav li a:hover {
 
 nav li > label {
     display: block;
+    padding-left
+
 }
 
 nav li > label + input {
     display: none;
 }
 
-nav li > a:before, 
-nav li > label:before {
+nav li > a::before,
+nav li > label::before {
     content: '';
     position: absolute;
-    left: 0px;
+    left: -8px;
     right: 0;
     height: 32px;
     margin-top: -4px;
@@ -419,8 +450,8 @@ nav li > label:before {
     opacity: 0;
 }
 
-nav li > a:hover:before, 
-nav li > label:hover:before  {
+nav li > a:hover::before,
+nav li > label:hover::before  {
     opacity: 1;
 }
 
@@ -436,7 +467,7 @@ nav ul.active-toc > li > a:before{
 }
 
 nav > ul > li > ul > li, nav > ul > li > ul {
-    max-height: 4rem;
+    max-height: 6rem;
     opacity: 1;
     will-change: opacity;
     overflow: hidden;
@@ -497,7 +528,7 @@ a.logo {
     position: fixed;
     bottom: 64px;
     right: 64px;
-    color: #333;
+    color: #efefef;
     background: var(--cta-color);
     border-radius: 50%;
     height: 56px;
@@ -506,7 +537,6 @@ a.logo {
     justify-content: center;
     align-items: center;
     box-shadow: var(--box-shadow);
-    color: #efefef;
 }
 
 .improve-me:hover {
@@ -594,8 +624,7 @@ pre code{
     }
 
     #search-container:not(.nothing-found) nav {
-        position: relative;
-        left: -20px;
+        left: -16px;
     }
 
     a#nav-button{
