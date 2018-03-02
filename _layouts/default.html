@@ -29,17 +29,17 @@
     </main>
     <aside id="nav">
         <header>
-            <div id="search-container">
-                <input type="text" id="search-input" placeholder="search...">
-                <nav>
-                  <ul id="results-container"></ul>
-                </nav>
-            </div>
             <a href="{{ site.baseurl }}/" class="logo">
                 <h1>{{ site.title | default: site.github.repository_name }}</h1>
                 <p>{{ site.description | default: site.github.project_tagline }}</p>
             </a>
         </header>
+        <div id="search-container">
+            <input type="text" id="search-input" placeholder="search...">
+            <nav>
+                <ul id="results-container"></ul>
+            </nav>
+        </div>
         <nav>
           {% capture trash %}
           {% assign pages = site.pages | sort: "dir.size"  %}
@@ -143,12 +143,12 @@
           var html = "";
           results = results.slice(0, 10);
           if (results.length > 0) {
-            for (result of results) {
-              var item    = result.item,
-                  snippet = result.result.snippet,
-                  parts   = snippet.split(query);
+            for (var result of results) {
+              var item     = result.item,
+                  snippet  = result.result.snippet,
+                  position = snippet.toLowerCase().indexOf(query);
 
-              if (parts.length > 1) snippet = parts.join(`<strong>${query}</strong>`);
+              if (position > 0) snippet = snippet.substring(0, position) + `<strong>${query}</strong>` + snippet.substring(position + query.length);
 
               html += `<li><a href="${item.url}">${item.title}</a><ul><li>&hellip;${snippet}&hellip;</li></ul></li>`
             }
