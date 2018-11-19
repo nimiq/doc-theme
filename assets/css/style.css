@@ -170,12 +170,16 @@ ol {
     padding-left: 24px;
 }
 
-ul>li,
-ol>li {
+ul ul {
+    margin-bottom: 0px
+}
+
+ul > li,
+ol > li {
     padding-bottom: 8px;
 }
 
-li>ul {
+li > ul {
     padding-top: 8px;
 }
 
@@ -399,12 +403,12 @@ nav ul {
     margin-bottom: 0;
 }
 
-nav>ul {
+nav > ul {
     padding-left: 0;
     margin-top: 8px;
 }
 
-li>ul>li:last-child {
+li > ul > li:last-child {
     padding-bottom: 0;
 }
 
@@ -486,6 +490,10 @@ nav > ul > li > :checked ~ ul > li, nav > ul > li > :checked ~ ul {
 
 nav > ul > li > :checked ~ ul > li > a:before {
     display: none;
+}
+
+nav ul > ul {
+    padding-left: 0px
 }
 
 
