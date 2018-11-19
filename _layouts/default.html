@@ -53,6 +53,7 @@
               {% assign packageDir = node.dir %}
               {% capture done %} {{ done }},{{ node.path }}{% endcapture %}
 
+              # "brief" is default behaviour
               {% if site.submodules == "detailed" %}
                 {% capture submodules %}{{ submodules }}
                   {% include toc.html html=node.content url=node.url h_max=2 %}
@@ -106,7 +107,7 @@
           {% if submodules.size > 0 %}
           <ul>
             <li>
-              <label for="sections">Submodules</label>
+              <label for="sections">{{ site.submodule_section }}</label>
               <input type="checkbox" id="sections" checked="">
               <ul>
                 {{ submodules }}
