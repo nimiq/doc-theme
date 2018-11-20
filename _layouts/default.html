@@ -5,6 +5,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    {% if site.custom_header_tags %}
+      {% include {{ site.custom_header_tags }} %}
+    {% endif %}
     <meta name="viewport" content="initial-scale=1, width=device-width">
 </head>
 
@@ -107,7 +110,7 @@
           {% if submodules.size > 0 %}
           <ul>
             <li>
-              <label for="sections">{{ site.submodule_section }}</label>
+              <label for="sections">{{ site.submodule_section | default: "Submodules" }}</label>
               <input type="checkbox" id="sections" checked="">
               <ul>
                 {{ submodules }}
@@ -123,6 +126,8 @@
     <script src="{{ site.baseurl }}/assets/js/FuzzySearch.js"></script>
     <script src="{{ site.baseurl }}/assets/js/search.js"></script>
     <script>
+
+      // initialize search functionality
 
       var css = document.getElementById("search-container").classList,
           input = document.getElementById("search-input"),
@@ -169,18 +174,20 @@
 
       searchInit("{{ site.baseurl }}/assets/js/search.json");
 
-    </script>
-    <script>
+
+      // restore menu state after page change (open/close sections, scroll position)
+
       const nav = document.querySelector("#nav > nav"),
             inputs = Array.from(nav.querySelectorAll("ul > li > input")),
             loadState = repeat => {
               const state = JSON.parse(localStorage.getItem("nav"));
+              if (!state) return;
 
               inputs.map((item, index) => { return item.checked = state.opened[index]; });
 
               const id = setInterval(_ => {
                 nav.scrollTop = state.scroll;
-                if (repeat-- < 1) clearInterval(id);
+                if (nav.scrollTop === state.scroll || repeat-- < 1) clearInterval(id);
               }, 20);
             },
             storeState = _ => {
@@ -192,11 +199,15 @@
 
       window.addEventListener('pagehide', storeState, false);
       loadState(100);
-    </script>
-    <script>
+
+
+      // adjust mobile header to currently loaded page
+
       document.getElementById("mobile-header").innerText = document.querySelector("main h1").innerText;
-    </script>
-    <script>
+      
+
+      // add little anchor symbol behind heading to allow copying of bookmark
+
       var anchorForId = function (id, text) {
         var anchor = document.createElement("a");
         anchor.className = "header-link";
