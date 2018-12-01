@@ -85,14 +85,15 @@
 
           {% assign superToc = "" %}
           {% for node in pages %}
+            {{ node.dir }}; {{ node.dir.size }}
             {% assign current = false %}
             {% assign min = 1000 %}
             {% assign doneList = done | split: "," %}
             {% for node in pages %}
               {% if node.dir.size < min %}
-                  {% unless doneList contains node.path %}
-                    {% assign current = node %}
-                    {% assign min = current.dir.size %}
+                {% unless doneList contains node.path %}
+                  {% assign current = node %}
+                  {% assign min = current.dir.size %}
                 {% endunless %}
               {% endif %}
             {% endfor %}
@@ -117,6 +118,12 @@
               </ul>
             </li>
           </ul>
+          {% endif %}
+
+          {% if site.debugging %}
+          <pre>
+            {{ trash }}
+          </pre>
           {% endif %}
 
         </nav>
@@ -204,7 +211,7 @@
       // adjust mobile header to currently loaded page
 
       document.getElementById("mobile-header").innerText = document.querySelector("main h1").innerText;
-      
+
 
       // add little anchor symbol behind heading to allow copying of bookmark
 

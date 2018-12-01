@@ -1,4 +1,3 @@
-remote_theme: nimiq/doc-theme
 title: "Nimiq"
 description: "Theme for Documentations"
 exclude: ["node_modules/*", "./*/*/**"]
@@ -7,3 +6,4 @@ submodule_section: "Demo Submodules"
 submodules: "detailed"
 
 custom_header_tags: "custom-header-tags.html"
+debugging: false
