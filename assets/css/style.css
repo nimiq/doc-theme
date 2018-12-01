@@ -590,6 +590,7 @@ pre code{
     padding: 16px;
     user-select: all;
     border-radius: 4px;
+    overflow: auto;
 }
 
 
