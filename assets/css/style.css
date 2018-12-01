@@ -19,7 +19,7 @@ main {
     min-height: 100vh;
 }
 
-main img { 
+main img {
     max-width: 100%;
 }
 
@@ -434,8 +434,6 @@ nav li a:hover {
 
 nav li > label {
     display: block;
-    padding-left
-
 }
 
 nav li > label + input {
@@ -470,7 +468,8 @@ nav ul.active-toc > li > a:before{
     margin-top: -1px;
 }
 
-nav > ul > li > ul > li, nav > ul > li > ul {
+nav ul > li > ul > li,
+nav ul > li > ul {
     max-height: 6rem;
     opacity: 1;
     will-change: opacity;
@@ -478,23 +477,25 @@ nav > ul > li > ul > li, nav > ul > li > ul {
     transition: max-height 300ms, opacity 200ms, margin-top 300ms;
 }
 
-nav > ul > li > ul {
+nav ul > li > ul {
     max-height: 100rem;
 }
 
-nav > ul > li > :checked ~ ul > li, nav > ul > li > :checked ~ ul {
+nav ul > li > :checked ~ ul > li,
+nav ul > li > :checked ~ ul {
     opacity: 0;
     max-height: 0;
     padding-top: 0;
 }
 
-nav > ul > li > :checked ~ ul > li > a:before {
+nav ul > li > :checked ~ ul > li > a:before {
     display: none;
 }
 
 nav ul > ul {
     padding-left: 0px
 }
+
 
 
 
