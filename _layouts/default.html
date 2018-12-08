@@ -51,20 +51,39 @@
           ### Fetch all submodules from the list of pages and mark them as "done".
           ### Menu is inserted below other TOCs.
 
+          {% assign ignoreList = site.ignore %}
+          ignoreList = {{ ignoreList }}
+          {% for filter in ignoreList %}
+            ignore: {{ filter }}
+          {% endfor %}
           {% for node in pages %}
             {% if node.name == "README.md" and node.dir != "/" %}
               {% assign packageDir = node.dir %}
               {% capture done %} {{ done }},{{ node.path }}{% endcapture %}
 
-              # "brief" is default behaviour
-              {% if site.submodules == "detailed" %}
-                {% capture submodules %}{{ submodules }}
-                  {% include toc.html html=node.content url=node.url h_max=2 %}
-                {% endcapture %}
-              {% elsif site.submodules != "none" %}
-                {% capture submodules %}{{ submodules }}
-                  <li><a href="{{ site.baseurl }}{{ node.url }}">{{ node.title }}</a></li>
-                {% endcapture %}
+              # on ignore list?
+              {% assign ignore = false %}
+              {% for filter in ignoreList %}
+                ignore? {{ node.dir }} filter: {{ filter }}
+                {% if node.dir contains filter %}
+                  {% assign ignore = true %}
+                  yes
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+              {% if ignore != true %}
+                Add sub module to TOC {{ node.url }}
+
+                # "brief" is default behaviour
+                {% if site.submodules == "detailed" %}
+                  {% capture submodules %}{{ submodules }}
+                    {% include toc.html html=node.content url=node.url h_max=2 %}
+                  {% endcapture %}
+                {% elsif site.submodules != "none" %}
+                  {% capture submodules %}{{ submodules }}
+                    <li><a href="{{ site.baseurl }}{{ node.url }}">{{ node.title }}</a></li>
+                  {% endcapture %}
+                {% endif %}
               {% endif %}
 
               {% for sub_doc in pages %}

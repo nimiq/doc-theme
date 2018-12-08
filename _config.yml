@@ -4,6 +4,7 @@ exclude: ["node_modules/*", "./*/*/**"]
 
 submodule_section: "Demo Submodules"
 submodules: "detailed"
+ignore: ["sub3", "test"]
 
 custom_header_tags: "custom-header-tags.html"
-debugging: false
+debugging: true
