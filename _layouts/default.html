@@ -57,20 +57,21 @@
             ignore: {{ filter }}
           {% endfor %}
           {% for node in pages %}
+            # on ignore list?
+            {% assign ignore = false %}
+            {% for filter in ignoreList %}
+              ignore? {{ node.dir }} filter: {{ filter }}
+              {% if node.dir contains filter %}
+                {% assign ignore = true %}
+                yes
+                {% capture done %} {{ done }},{{ node.path }}{% endcapture %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+
             {% if node.name == "README.md" and node.dir != "/" %}
               {% assign packageDir = node.dir %}
-              {% capture done %} {{ done }},{{ node.path }}{% endcapture %}
 
-              # on ignore list?
-              {% assign ignore = false %}
-              {% for filter in ignoreList %}
-                ignore? {{ node.dir }} filter: {{ filter }}
-                {% if node.dir contains filter %}
-                  {% assign ignore = true %}
-                  yes
-                  {% break %}
-                {% endif %}
-              {% endfor %}
               {% if ignore != true %}
                 Add sub module to TOC {{ node.url }}
 
