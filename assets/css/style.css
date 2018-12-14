@@ -262,6 +262,14 @@ a:hover {
     color: var(--cta-color);
 }
 
+strong a, 
+strong a:link, 
+strong a:active, 
+strong a:visited, 
+strong a:hover {
+    font-weight: bold;
+}
+
 h1:hover a,
 h2:hover a,
 h3:hover a,
