@@ -56,6 +56,7 @@
           {% for filter in ignoreList %}
             ignore: {{ filter }}
           {% endfor %}
+
           {% for node in pages %}
             # on ignore list?
             {% assign ignore = false %}
@@ -73,6 +74,7 @@
               {% assign packageDir = node.dir %}
 
               {% if ignore != true %}
+                {% capture done %} {{ done }},{{ node.path }}{% endcapture %}
                 Add sub module to TOC {{ node.url }}
 
                 # "brief" is default behaviour
