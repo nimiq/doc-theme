@@ -153,6 +153,12 @@ aside:before {
     width: 16px;
     background: linear-gradient(#536DFE, #a553fe);
 }
+blockquote {
+    margin-left: 0;
+    padding-left: 16px;
+    border: 1px solid #efefef;
+    border-left: 8px solid #efefef;
+}
 
 ::selection {
   background: #64FFDA;
