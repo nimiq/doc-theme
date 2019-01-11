@@ -41,7 +41,7 @@ Just keep there rules in mind:
 
 ## Real World Examples 
 
-- [Nimiq Developer Reference](https://nimiq.com/developer-reference)
+- [Nimiq Developer Reference](https://nimiq.com/developers)
 
 ## Additional configuration
 
